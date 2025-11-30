@@ -107,7 +107,45 @@ void bai4()
     }
 }
 
+
+
+int soto(int menh_gia, int tien_doi){
+    int so_to = tien_doi/menh_gia;
+    if ( so_to > 0) {
+        printf(" SO TO %d : %d \n", menh_gia, so_to);
+        return tien_doi%menh_gia;
+    };
+    return tien_doi;
+}
+
+void bai5a() {
+    printf("\n=== BAI 5: CHUC NANG DOI TIEN ===\n");
+
+
+    int tien_doi;
+    float so_to = 0;
+
+    printf(" NHAP SO TIEN CAN DOI: ");
+
+    do
+    {
+        scanf("%d", &tien_doi);
+    } while (tien_doi <= 0);
+
+
+
+    int arr[9] = {500, 200, 100, 50, 20, 10, 5, 2, 1};
+
+    int result = tien_doi;
+
+    for (size_t i = 0; i < 9; i++)
+    {
+        result = soto(arr[i], result);
+    }
+    
+}
+
 int main()
 {
-    bai4();
+    bai5a();
 }
