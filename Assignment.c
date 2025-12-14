@@ -62,8 +62,6 @@ void bai4()
         scanf("%f", &cong_suat);
     } while (cong_suat <= 0);
 
-
-
     if (cong_suat <= 50)
     {
         tong_tien = cong_suat * 1678.0;
@@ -96,7 +94,8 @@ void bai4()
                 }
                 else
                 {
-                    if (cong_suat > 300){
+                    if (cong_suat > 300)
+                    {
                         tong_tien = cong_suat * 2834.0;
                         printf("CONG SUAT DA SU DUNG: %.lf\n", cong_suat);
                         printf("TONG TIEN CAN THANH TOAN: %.00000fVND\n", tong_tien);
@@ -107,20 +106,20 @@ void bai4()
     }
 }
 
-
-
-int soto(int menh_gia, int tien_doi){
-    int so_to = tien_doi/menh_gia;
-    if ( so_to > 0) {
+int soto(int menh_gia, int tien_doi)
+{
+    int so_to = tien_doi / menh_gia;
+    if (so_to > 0)
+    {
         printf(" SO TO %d : %d \n", menh_gia, so_to);
-        return tien_doi%menh_gia;
+        return tien_doi % menh_gia;
     };
     return tien_doi;
 }
 
-void bai5a() {
+void bai5a()
+{
     printf("\n=== BAI 5: CHUC NANG DOI TIEN ===\n");
-
 
     int tien_doi;
     float so_to = 0;
@@ -132,8 +131,6 @@ void bai5a() {
         scanf("%d", &tien_doi);
     } while (tien_doi <= 0);
 
-
-
     int arr[9] = {500, 200, 100, 50, 20, 10, 5, 2, 1};
 
     int result = tien_doi;
@@ -142,10 +139,91 @@ void bai5a() {
     {
         result = soto(arr[i], result);
     }
-    
+}
+
+void bai6()
+{
+
+    printf("\n=== BAI 6: VAY LAI SUAT NGAN HANG ===\n");
+
+    int tien_vay, so_thang_vay;
+    float lai_suat, tien_phai_tra;
+
+    printf(" NHAP SO TIEN VAY: ");
+    do
+    {
+        scanf("%d", &tien_vay);
+    } while (tien_vay <= 0);
+
+    printf(" NHAP SO THANG VAY: ");
+    do
+    {
+        scanf("%d", &so_thang_vay);
+    } while (so_thang_vay <= 0);
+
+    printf(" NHAP SO LAI SUAT: ");
+    do
+    {
+        scanf("%f", &lai_suat);
+    } while (lai_suat <= 0);
+
+    tien_phai_tra = tien_vay * (lai_suat * pow((lai_suat + 1), so_thang_vay)) / (pow((1 + lai_suat), so_thang_vay) - 1);
+    printf(" SO TIEN PHAI TRA: %f ", tien_phai_tra);
+}
+
+struct SinhVien
+{
+    char ten[50];
+    char maSV[10];
+    float diemTB;
+};
+
+void bai8()
+{
+    int n;
+    printf("Nhap so sinh vien: ");
+    scanf("%d", &n);
+    getchar();
+
+    struct SinhVien sv[n];
+
+    for (int i = 0; i < n; i++)
+    {
+        printf("\nNhap thong tin sinh vien thu %d\n", i + 1);
+
+        printf("Ten: ");
+        fgets(sv[i].ten, sizeof(sv[i].ten), stdin);
+        sv[i].ten[strcspn(sv[i].ten, "\n")] = '\0';
+
+        printf("Ma SV: ");
+        fgets(sv[i].maSV, sizeof(sv[i].maSV), stdin);
+        sv[i].maSV[strcspn(sv[i].maSV, "\n")] = '\0';
+
+        printf("Diem TB: ");
+        scanf("%f", &sv[i].diemTB);
+        getchar();
+
+    }
+    for (int i = 0; i < n - 1; i++)
+        {
+            for (int j = i + 1; j < n; j++)
+            {
+                if (sv[i].diemTB < sv[j].diemTB)
+                {
+                    struct SinhVien temp = sv[i];
+                    sv[i] = sv[j];
+                    sv[j] = temp;
+                }
+            }
+        }
+        printf("\nDanh sach sinh vien sau khi sap xep (diem giam dan):\n");
+        for (int i = 0; i < n; i++)
+        {
+            printf("%d. %-20s | MaSV: %-10s | Diem: %.2f\n", i + 1, sv[i].ten, sv[i].maSV, sv[i].diemTB);
+        }
 }
 
 int main()
 {
-    bai5a();
+    bai6();
 }
