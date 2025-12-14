@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
+#include <time.h>
 
 void bai3()
 {
@@ -223,7 +224,85 @@ void bai8()
         }
 }
 
+
+
+void bai9() {
+    srand(time(NULL));
+    printf("\n=== BAI 9: GAME FPT-LOTT ===\n");
+    printf("SO DUOC CHON PHAI TU 1-45\n");
+    int a[6],b[6];
+    int dung, hople;
+    int trung = 0;
+
+    for (int i =0; i<6; i++ ){
+        do{
+            dung=1;
+            printf("Nhap so thu %d: ", i+1);
+            scanf("%d", &a[i]);
+            if ( a[i] < 1 || a[i] > 45){
+                printf("KHONG HOP LE\n");
+                dung=0;
+            }
+
+            for ( int j = 0 ; j < i; j++){
+                if (a[i] == a[j]){
+                    printf("SO BI TRUNG\n");
+                    dung=0;
+                    break;
+                }
+            }
+
+        } while (!dung);
+    }
+
+    printf("6 so da nhap: ");
+    for ( int i = 0; i < 6; i++) {
+        printf("%d ", a[i]);
+    };
+
+    for (int i = 0; i < 6; i++) {
+        do {
+            hople = 1;
+            b[i] = rand() % 45 + 1;
+
+            for (int j = 0; j < i; j++) {
+                if (b[i] == b[j]) {
+                    hople = 0;
+                    break;
+                }
+            }
+        } while (!hople);
+    
+    }
+
+    printf("\n6 so may random: ");
+    for (int i = 0; i < 6; i++){
+        printf("%d ", b[i]);
+    }
+
+    for ( int i = 0; i < 6 ; i++){
+        for (int j = 0; j < 6 ; j++){
+            if ( a[i] == b[j] ){
+                trung++;
+                break;
+            }
+        }
+    }
+
+    float tien_thuong = 0;
+    float c[] = {0,0.1,0.2,0.4,0.6,0.8,1};
+    if (trung > 0){
+        tien_thuong = 120000 * c[trung];
+    }
+
+    printf("\nSo trung: %d", trung);
+    printf("\nTien thuong: %.2f VND", tien_thuong);
+
+
+}
+
+
 int main()
 {
-    bai6();
+    bai9();
 }
